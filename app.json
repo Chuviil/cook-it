@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-
+    "scheme": "cookit",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
