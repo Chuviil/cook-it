@@ -1,11 +1,9 @@
 import {SafeAreaView, View} from "react-native";
-import {Stack, useRouter} from "expo-router";
-import {Intro} from "../components";
 import {StatusBar} from "expo-status-bar";
+import {Stack} from "expo-router";
+import {RegisterForm} from "../components";
 
-const Home = () => {
-    const router = useRouter();
-
+const Register = () => {
     return (
         <SafeAreaView style={{flex: 1}}>
             <Stack.Screen
@@ -13,19 +11,16 @@ const Home = () => {
                     headerShown: false,
                 }}
             />
-            <StatusBar style={"light"}/>
+            <StatusBar style={"dark"}/>
             <View
                 style={{
                     flex: 1,
                 }}
             >
-                <Intro
-                    onLoginPress={() => router.push("/login")}
-                    onRegisterPress={() => router.push("/register")}
-                />
+                <RegisterForm/>
             </View>
         </SafeAreaView>
     )
 }
 
-export default Home;
+export default Register;

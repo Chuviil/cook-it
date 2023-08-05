@@ -1,5 +1,6 @@
 import {StyleSheet} from "react-native";
 import {COLORS, FONT, SIZES} from "../../../constants";
+import {StatusBar} from "react-native";
 
 const styles = StyleSheet.create({
     imageBackground: {
@@ -15,7 +16,7 @@ const styles = StyleSheet.create({
         width: 99,
         height: 122,
         position: "absolute",
-        top: SIZES.xLarge,
+        top: StatusBar.currentHeight,
     },
     title: {
         fontSize: 60,
