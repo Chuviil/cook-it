@@ -3,7 +3,7 @@ import {Stack, useRouter} from "expo-router";
 import {Intro} from "../components";
 import {StatusBar} from "expo-status-bar";
 
-const Home = () => {
+const Session = () => {
     const router = useRouter();
 
     return (
@@ -28,4 +28,4 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default Session;

@@ -1,11 +1,11 @@
-import {View, Text, Image} from "react-native";
+import {View, Text, Image, TouchableWithoutFeedback} from "react-native";
 import styles from "../session.style";
 import {images} from "../../../../constants";
 import FormInput from "../FormInput";
 import Button from "../Button";
 
 
-const RegisterForm = () => {
+const RegisterForm = ({onLoginPress}) => {
     return (
         <View style={styles.container}>
             <Image source={images.logo_negro} style={styles.logo}/>
@@ -18,7 +18,9 @@ const RegisterForm = () => {
             <Button separation={30} text={"Register"}/>
             <Text style={[styles.paragraph, {marginTop: 30}]}>
                 ¿Ya tienes una cuenta?
-                <Text style={styles.link}> Login</Text>
+                <TouchableWithoutFeedback onPress={onLoginPress}>
+                    <Text style={styles.link}> Login</Text>
+                </TouchableWithoutFeedback>
             </Text>
         </View>
     )

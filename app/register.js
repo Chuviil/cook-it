@@ -1,9 +1,11 @@
 import {SafeAreaView, View} from "react-native";
 import {StatusBar} from "expo-status-bar";
-import {Stack} from "expo-router";
+import {Stack, useRouter} from "expo-router";
 import {RegisterForm} from "../components";
 
 const Register = () => {
+    const router = useRouter();
+
     return (
         <SafeAreaView style={{flex: 1}}>
             <Stack.Screen
@@ -17,7 +19,9 @@ const Register = () => {
                     flex: 1,
                 }}
             >
-                <RegisterForm/>
+                <RegisterForm
+                    onLoginPress={() => {router.push("/login")}}
+                />
             </View>
         </SafeAreaView>
     )
