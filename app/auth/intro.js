@@ -1,11 +1,9 @@
 import {SafeAreaView, View} from "react-native";
-import {Stack, useRouter} from "expo-router";
-import {LoginForm} from "../components";
+import {router, Stack} from "expo-router";
+import {Intro} from "../../components";
 import {StatusBar} from "expo-status-bar";
 
-const Login = () => {
-    const router = useRouter();
-
+const Session = () => {
     return (
         <SafeAreaView style={{flex: 1}}>
             <Stack.Screen
@@ -13,20 +11,19 @@ const Login = () => {
                     headerShown: false,
                 }}
             />
-            <StatusBar style={"dark"}/>
+            <StatusBar style={"light"}/>
             <View
                 style={{
                     flex: 1,
                 }}
             >
-                <LoginForm
-                    onRegisterPress={() => {
-                        router.push("/register")
-                    }}
+                <Intro
+                    onLoginPress={() => router.replace("/auth/login")}
+                    onRegisterPress={() => router.replace("/auth/register")}
                 />
             </View>
         </SafeAreaView>
     )
 }
 
-export default Login;
+export default Session;

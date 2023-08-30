@@ -1,7 +1,7 @@
 import {Stack} from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
 import {useFonts} from "expo-font";
-import {useCallback} from "react";
+import {Provider} from "../context/auth";
+import * as SplashScreen from "expo-splash-screen";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -12,15 +12,15 @@ const Layout = () => {
         AnekGujaratiRegular: require('../assets/fonts/AnekGujarati-Regular.ttf'),
     })
 
-    const onLayoutRootView = useCallback(async () => {
-        if (fontsLoaded) {
-            await SplashScreen.hideAsync();
-        }
-    }, [fontsLoaded]);
+    if (!fontsLoaded) {
+        return null;
+    }
 
-    if (!fontsLoaded) return null;
-
-    return <Stack onLayout={onLayoutRootView} />;
+    return (
+        <Provider>
+            <Stack/>
+        </Provider>
+    );
 }
 
 export default Layout;

@@ -1,19 +1,20 @@
 import {ActivityIndicator, SafeAreaView, View} from "react-native";
 import {StatusBar} from "expo-status-bar";
-import {Stack, useRouter} from "expo-router";
-import {RegisterForm} from "../components";
+import {Stack, router} from "expo-router";
 import {useState} from "react";
-import {COLORS,URL} from "../constants";
+import {COLORS,URL} from "../../constants";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import RegisterForm from "../../components/home/session/register/RegisterForm";
+import {useAuth} from "../../context/auth";
 
 const Register = () => {
-    const router = useRouter();
     const [nombre, setNombre] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
     const [loading, setLoading] = useState(false);
+    const {login} = useAuth();
 
     const onRegisterPress = async () => {
         if (password !== passwordConfirm) return alert("Las contraseñas no coinciden");
@@ -28,7 +29,7 @@ const Register = () => {
                 {headers: {'Content-Type': 'application/json'}}
             )
             await AsyncStorage.setItem("token", response.data.token);
-            router.replace("/main");
+            login(response.data);
         } catch (e) {
             alert(e.response.data.message);
         } finally {
@@ -56,7 +57,7 @@ const Register = () => {
                 ) : (
                     <RegisterForm
                         onLoginPress={() => {
-                            router.push("/login")
+                            router.push("/auth/login")
                         }}
                         nombre={nombre}
                         email={email}

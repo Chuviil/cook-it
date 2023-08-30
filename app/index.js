@@ -1,31 +1,12 @@
-import {SafeAreaView, View} from "react-native";
-import {Stack, useRouter} from "expo-router";
-import {Intro} from "../components";
-import {StatusBar} from "expo-status-bar";
+import {Text, View} from "react-native";
+import {useAuth} from "../context/auth";
 
-const Session = () => {
-    const router = useRouter();
+export default function Index() {
+    const {user} = useAuth();
 
     return (
-        <SafeAreaView style={{flex: 1}}>
-            <Stack.Screen
-                options={{
-                    headerShown: false,
-                }}
-            />
-            <StatusBar style={"light"}/>
-            <View
-                style={{
-                    flex: 1,
-                }}
-            >
-                <Intro
-                    onLoginPress={() => router.push("/login")}
-                    onRegisterPress={() => router.push("/register")}
-                />
-            </View>
-        </SafeAreaView>
+        <View>
+            <Text>{JSON.stringify(user)}</Text>
+        </View>
     )
 }
-
-export default Session;
