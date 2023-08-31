@@ -18,8 +18,8 @@ const Session = () => {
                 }}
             >
                 <Intro
-                    onLoginPress={() => router.replace("/auth/login")}
-                    onRegisterPress={() => router.replace("/auth/register")}
+                    onLoginPress={() => router.push("/auth/login")}
+                    onRegisterPress={() => router.push("/auth/register")}
                 />
             </View>
         </SafeAreaView>

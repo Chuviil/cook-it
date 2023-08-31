@@ -5,8 +5,8 @@ import {useState} from "react";
 import {COLORS,URL} from "../../constants";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import RegisterForm from "../../components/home/session/register/RegisterForm";
-import {useAuth} from "../../context/auth";
+import RegisterForm from "../../components/auth/session/register/RegisterForm";
+import {useAuth} from "../../hooks/auth";
 
 const Register = () => {
     const [nombre, setNombre] = useState("");

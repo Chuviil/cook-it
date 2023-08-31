@@ -1,6 +1,6 @@
 import {Stack} from "expo-router";
 import {useFonts} from "expo-font";
-import {Provider} from "../context/auth";
+import {Provider} from "../hooks/auth";
 import * as SplashScreen from "expo-splash-screen";
 
 SplashScreen.preventAutoHideAsync();

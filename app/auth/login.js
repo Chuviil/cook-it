@@ -2,7 +2,7 @@ import {ActivityIndicator, SafeAreaView, View} from "react-native";
 import {Stack, router} from "expo-router";
 import {LoginForm} from "../../components";
 import {StatusBar} from "expo-status-bar";
-import {useAuth} from "../../context/auth";
+import {useAuth} from "../../hooks/auth";
 import {useState} from "react";
 import {COLORS, URL} from "../../constants";
 import axios from "axios";
