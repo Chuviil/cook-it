@@ -1,7 +1,7 @@
 import styles from "./tendencia.styles";
 import {ActivityIndicator, Text, View} from "react-native";
 import useFetch from "../../../hooks/useFetch";
-import Card from "../../common/card/Card";
+import Card from "../../common/horizontalCard/Card";
 import {router} from "expo-router";
 
 const Tendencia = () => {

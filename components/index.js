@@ -5,11 +5,12 @@ import HeaderIconButton from "./common/headerIconButton/HeaderIconButton";
 import HeaderImgButton from "./common/headerImgButton/HeaderImgButton";
 import Search from "./home/search/Search";
 import Tendencia from "./home/tendencia/Tendencia";
-import Card from "./common/card/Card";
+import Card from "./common/horizontalCard/Card";
 import ImageWithGradient from "./recipes/imageWithGradient/ImageWithGradient";
 import RecipeInfo from "./recipes/recipeInfo/RecipeInfo";
 import RecipeSteps from "./recipes/recipeSteps/RecipeSteps";
 import UserInfo from "./perfil/userInfo/UserInfo";
+import RecipesScroll from "./perfil/recipesScroll/RecipesScroll";
 
 export {
     Intro,
@@ -24,4 +25,5 @@ export {
     RecipeInfo,
     RecipeSteps,
     UserInfo,
+    RecipesScroll,
 }

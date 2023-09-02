@@ -1,13 +1,11 @@
 import {ActivityIndicator, Image, SafeAreaView, Text, View} from "react-native";
 import {router, Stack} from "expo-router";
 import {COLORS, images} from "../../constants";
-import {HeaderIconButton, UserInfo} from "../../components";
-import {useAuth} from "../../hooks/auth";
+import {HeaderIconButton, RecipesScroll, UserInfo} from "../../components";
 import useFetch from "../../hooks/useFetch";
 
 const Perfil = () => {
-    const {user} = useAuth();
-    const {data, loading, error} = useFetch("user", user.token);
+    const {data, loading, error} = useFetch("recipes");
 
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
@@ -38,7 +36,10 @@ const Perfil = () => {
                 ) : (
                     <View>
                         <UserInfo/>
-                        <Text>{JSON.stringify(user)}</Text>
+                        <View style={{paddingLeft: "8%"}}>
+                            <RecipesScroll data={data} title={"Recetas Publicadas"}/>
+                            <RecipesScroll data={data} title={"Recetas Guardadas"}/>
+                        </View>
                     </View>
                 )}
             </View>
