@@ -23,7 +23,7 @@ const Tendencia = () => {
                         <Card
                             recipe={recipe}
                             key={recipe._id}
-                            handleNavigate={() => router.push(`/recipe/${recipe._id}`)}
+                            handleNavigate={() => router.push(`/main/recipes/${recipe._id}`)}
                         />
                     ))
                 )

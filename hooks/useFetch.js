@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {URL} from "../constants";
 import axios from "axios";
 
-const useFetch = (endpoint) => {
+const useFetch = (endpoint, token) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -14,6 +14,10 @@ const useFetch = (endpoint) => {
             'Content-Type': 'application/json',
         }
     };
+
+    if (token) {
+        options.headers["x-access-token"] = token;
+    }
 
     const fetchData = async () => {
         setLoading(true);

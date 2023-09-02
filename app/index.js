@@ -1,51 +1,17 @@
-import {ActivityIndicator, Image, SafeAreaView, ScrollView, View} from "react-native";
-import {useAuth} from "../hooks/auth";
-import {COLORS, images, SIZES} from "../constants";
+import {ActivityIndicator, View} from "react-native";
 import {Stack} from "expo-router";
-import {StatusBar} from "expo-status-bar";
-import {HeaderIconButton, HeaderImgButton, Search, Tendencia} from "../components";
 
-export default function Index() {
-    const {user} = useAuth();
-
-    if (!user) {
-        return (
-            <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-                <ActivityIndicator size="large" color={COLORS.blue4}/>
-            </View>
-        )
-    }
-
+const Index = () => {
     return (
-        <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
+        <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
             <Stack.Screen
                 options={{
-                    headerBackVisible: false,
-                    headerTitle: () => (
-                        <Image
-                            source={images.logo_negro}
-                            style={{width: 67, height: 64}}
-                            resizeMode={"cover"}
-                        />
-                    ),
-                    headerLeft: () => (
-                        <HeaderIconButton icon={"bars"}/>
-                    ),
-                    headerRight: () => (
-                        <HeaderImgButton imgURL={user.fotoPerfilURL}/>
-                    ),
-                    headerTitleAlign: "center",
+                    headerShown: false
                 }}
             />
-            <StatusBar style={"dark"}/>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <View
-                    style={{flex: 1, padding: SIZES.medium}}
-                >
-                    <Search/>
-                    <Tendencia/>
-                </View>
-            </ScrollView>
-        </SafeAreaView>
+            <ActivityIndicator size={"large"}/>
+        </View>
     )
 }
+
+export default Index;
