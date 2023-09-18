@@ -1,8 +1,7 @@
 import {ActivityIndicator, SafeAreaView, View} from "react-native";
-import {Stack, router} from "expo-router";
+import {router} from "expo-router";
 import {LoginForm} from "../../components";
 import {StatusBar} from "expo-status-bar";
-import {useAuth} from "../../hooks/auth";
 import {useState} from "react";
 import {COLORS, URL} from "../../constants";
 import axios from "axios";
@@ -12,7 +11,6 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const {login} = useAuth();
 
     const onLoginPress = async () => {
         setLoading(true);
@@ -26,7 +24,7 @@ const Login = () => {
                 {headers: {"Content-Type": "application/json"}}
             )
             await AsyncStorage.setItem("token", response.data.token);
-            login(response.data);
+            router.replace("/");
         } catch (e) {
             alert(e.response.data.message);
         } finally {
@@ -44,11 +42,6 @@ const Login = () => {
 
     return (
         <SafeAreaView style={{flex: 1}}>
-            <Stack.Screen
-                options={{
-                    headerShown: false,
-                }}
-            />
             <StatusBar style={"dark"}/>
             <View
                 style={{

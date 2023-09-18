@@ -1,12 +1,11 @@
 import {ActivityIndicator, SafeAreaView, View} from "react-native";
 import {StatusBar} from "expo-status-bar";
-import {Stack, router} from "expo-router";
+import {router} from "expo-router";
 import {useState} from "react";
-import {COLORS,URL} from "../../constants";
+import {COLORS, URL} from "../../constants";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import RegisterForm from "../../components/auth/session/register/RegisterForm";
-import {useAuth} from "../../hooks/auth";
 
 const Register = () => {
     const [nombre, setNombre] = useState("");
@@ -14,7 +13,6 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
     const [loading, setLoading] = useState(false);
-    const {login} = useAuth();
 
     const onRegisterPress = async () => {
         if (password !== passwordConfirm) return alert("Las contraseñas no coinciden");
@@ -29,7 +27,7 @@ const Register = () => {
                 {headers: {'Content-Type': 'application/json'}}
             )
             await AsyncStorage.setItem("token", response.data.token);
-            login(response.data);
+            router.replace("/main");
         } catch (e) {
             alert(e.response.data.message);
         } finally {
@@ -39,11 +37,6 @@ const Register = () => {
 
     return (
         <SafeAreaView style={{flex: 1}}>
-            <Stack.Screen
-                options={{
-                    headerShown: false,
-                }}
-            />
             <StatusBar style={"dark"}/>
             <View
                 style={{

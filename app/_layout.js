@@ -1,6 +1,5 @@
-import {Slot, Stack} from "expo-router";
+import {Stack} from "expo-router";
 import {useFonts} from "expo-font";
-import {Provider} from "../hooks/auth";
 import * as SplashScreen from "expo-splash-screen";
 import {useEffect} from "react";
 
@@ -30,9 +29,8 @@ const Layout = () => {
     }
 
     return (
-        <Provider>
-            <Stack/>
-        </Provider>
+        <Stack screenOptions={{headerShown: false}}>
+        </Stack>
     );
 }
 

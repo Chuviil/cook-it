@@ -1,4 +1,4 @@
-import {ActivityIndicator, Image, SafeAreaView, Text, View} from "react-native";
+import {ActivityIndicator, Image, SafeAreaView, ScrollView, Text, View} from "react-native";
 import {router, Stack} from "expo-router";
 import {COLORS, images} from "../../constants";
 import {HeaderIconButton, RecipesScroll, UserInfo} from "../../components";
@@ -28,7 +28,7 @@ const Perfil = () => {
                     headerTitleAlign: "center",
                 }}
             />
-            <View style={{flex: 1}}>
+            <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1}}>
                 {loading ? (
                     <ActivityIndicator size={"large"}/>
                 ) : error ? (
@@ -42,7 +42,7 @@ const Perfil = () => {
                         </View>
                     </View>
                 )}
-            </View>
+            </ScrollView>
         </SafeAreaView>
     )
 }

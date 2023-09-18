@@ -1,12 +1,11 @@
 import {Image, Text, View} from "react-native";
 import styles from "./userInfo.styles";
 import {COLORS} from "../../../constants";
-import useFetch from "../../../hooks/useFetch";
-import {useAuth} from "../../../hooks/auth";
+import useAuth from "../../../hooks/useAuth";
 
 const Separator = () => {
     return (
-        <View style={{height:60, width: 1, backgroundColor: COLORS.blue2, marginHorizontal: 10}}>
+        <View style={{height: 60, width: 1, backgroundColor: COLORS.blue2, marginHorizontal: 10}}>
 
         </View>
     )
@@ -14,8 +13,6 @@ const Separator = () => {
 
 const UserInfo = () => {
     const {user} = useAuth();
-    const {data, loading, error} = useFetch("user", user.token);
-
     return (
         <View style={styles.modalContainer}>
             <Image style={styles.profilePicture} resizeMode={"cover"} source={{uri: user.fotoPerfilURL}}/>

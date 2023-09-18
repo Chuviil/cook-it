@@ -1,34 +1,32 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect, useState} from "react";
 import {URL} from "../constants";
 import axios from "axios";
 
-const useFetch = (endpoint, token) => {
-    const [data, setData] = useState([]);
+const useAuth = () => {
+    const [user, setUser] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const options = {
         method: 'GET',
-        url: `${URL}/api/${endpoint}`,
+        url: `${URL}/api/user`,
         headers: {
             'Content-Type': 'application/json',
         }
     };
 
-    if (token) {
-        options.headers["x-access-token"] = token;
-    }
-
     const fetchData = async () => {
         setLoading(true);
 
         try {
+            options.headers["x-access-token"] = await AsyncStorage.getItem('token');
             const response = await axios.request(options);
-            setData(response.data);
+            setUser(response.data);
             setLoading(false);
         } catch (e) {
             setError(e);
-            alert("Error encountered while fetching");
+            console.log("Error while fetching Authentication", e);
         } finally {
             setLoading(false);
         }
@@ -38,12 +36,7 @@ const useFetch = (endpoint, token) => {
         fetchData();
     }, []);
 
-    const refetch = () => {
-        setLoading(true);
-        fetchData();
-    }
-
-    return {data, loading, error, refetch};
+    return {user, loading, error};
 }
 
-export default useFetch;
+export default useAuth;

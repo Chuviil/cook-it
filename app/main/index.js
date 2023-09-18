@@ -1,9 +1,10 @@
 import {ActivityIndicator, Image, SafeAreaView, ScrollView, View} from "react-native";
-import {useAuth} from "../../hooks/auth";
 import {COLORS, images, SIZES} from "../../constants";
-import {router, Stack} from "expo-router";
 import {StatusBar} from "expo-status-bar";
 import {HeaderIconButton, HeaderImgButton, Search, Tendencia} from "../../components";
+import useAuth from "../../hooks/useAuth";
+import {Drawer} from "expo-router/drawer";
+import {router} from "expo-router";
 
 export default function Index() {
     const {user} = useAuth();
@@ -18,9 +19,8 @@ export default function Index() {
 
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
-            <Stack.Screen
-                options={{
-                    headerBackVisible: false,
+            <Drawer.Screen options={
+                {
                     headerTitle: () => (
                         <Image
                             source={images.logo_negro}
@@ -29,13 +29,15 @@ export default function Index() {
                         />
                     ),
                     headerLeft: () => (
-                        <HeaderIconButton icon={"bars"}/>
+                        <HeaderIconButton icon={"bars"} onPress={() => navigation.openDrawer()}/>
                     ),
                     headerRight: () => (
-                        <HeaderImgButton imgURL={user.fotoPerfilURL} onPress={() => router.push("/main/perfil")}/>
+                        <HeaderImgButton imgURL={user.fotoPerfilURL} onPress={() =>
+                            router.push("/main/perfil")}/>
                     ),
                     headerTitleAlign: "center",
-                }}
+                }
+            }
             />
             <StatusBar style={"dark"}/>
             <ScrollView showsVerticalScrollIndicator={false}>

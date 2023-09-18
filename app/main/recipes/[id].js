@@ -2,9 +2,9 @@ import {ActivityIndicator, Image, SafeAreaView, ScrollView, Text, View} from "re
 import {COLORS, images} from "../../../constants";
 import {router, Stack, useLocalSearchParams} from "expo-router";
 import {HeaderIconButton, HeaderImgButton, ImageWithGradient, RecipeInfo, RecipeSteps} from "../../../components";
-import {useAuth} from "../../../hooks/auth";
 import useFetch from "../../../hooks/useFetch";
 import {useState} from "react";
+import useAuth from "../../../hooks/useAuth";
 
 const RecipeDetailsScreen = () => {
     const {user} = useAuth();
