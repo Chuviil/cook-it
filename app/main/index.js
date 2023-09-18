@@ -4,10 +4,11 @@ import {StatusBar} from "expo-status-bar";
 import {HeaderIconButton, HeaderImgButton, Search, Tendencia} from "../../components";
 import useAuth from "../../hooks/useAuth";
 import {Drawer} from "expo-router/drawer";
-import {router} from "expo-router";
+import {router, useNavigation} from "expo-router";
 
 export default function Index() {
     const {user} = useAuth();
+    const navigation = useNavigation();
 
     if (!user) {
         return (
