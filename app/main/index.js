@@ -5,10 +5,12 @@ import {HeaderIconButton, HeaderImgButton, Search, Tendencia} from "../../compon
 import useAuth from "../../hooks/useAuth";
 import {Drawer} from "expo-router/drawer";
 import {router, useNavigation} from "expo-router";
+import {useState} from "react";
 
 export default function Index() {
     const {user} = useAuth();
     const navigation = useNavigation();
+    const [search, setSearch] = useState("");
 
     if (!user) {
         return (
@@ -30,11 +32,11 @@ export default function Index() {
                         />
                     ),
                     headerLeft: () => (
-                        <HeaderIconButton icon={"bars"} onPress={() => navigation.openDrawer()}/>
+                        <HeaderIconButton icon={"bars"} onPress={() => navigation.openDrawer()} margin/>
                     ),
                     headerRight: () => (
                         <HeaderImgButton imgURL={user.fotoPerfilURL} onPress={() =>
-                            router.push("/main/perfil")}/>
+                            router.push("/profile/perfil")} margin/>
                     ),
                     headerTitleAlign: "center",
                 }
@@ -45,7 +47,9 @@ export default function Index() {
                 <View
                     style={{flex: 1, padding: SIZES.medium}}
                 >
-                    <Search/>
+                    <Search search={search} setSearch={setSearch} onSearchPress={() => {
+                        console.log("Searching: ", search)
+                    }}/>
                     <Tendencia/>
                 </View>
             </ScrollView>

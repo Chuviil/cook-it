@@ -1,9 +1,9 @@
 import {TouchableOpacity} from "react-native";
 import Icon from '@expo/vector-icons/FontAwesome5';
 
-const HeaderIconButton = ({icon, onPress}) => {
+const HeaderIconButton = ({icon, onPress, margin}) => {
     return (
-        <TouchableOpacity onPress={onPress} style={{marginHorizontal: 15}}>
+        <TouchableOpacity onPress={onPress} style={{marginHorizontal: margin ? 15 : 0}}>
             <Icon name={icon} size={28}/>
         </TouchableOpacity>
     )

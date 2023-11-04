@@ -3,7 +3,7 @@ import styles from "./search.styles";
 import Icon from '@expo/vector-icons/FontAwesome5';
 import {COLORS} from "../../../constants";
 
-const Search = () => {
+const Search = ({onSearchPress, search, setSearch}) => {
     return (
         <View>
             <View style={styles.container}>
@@ -14,6 +14,10 @@ const Search = () => {
                     <TextInput
                         style={styles.searchInput}
                         placeholder={"Ingresa tus ingredientes"}
+                        returnKeyType={"search"}
+                        onSubmitEditing={onSearchPress}
+                        value={search}
+                        onChangeText={(text) => setSearch(text)}
                     />
                 </View>
 

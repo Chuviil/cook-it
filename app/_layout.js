@@ -2,6 +2,7 @@ import {Stack} from "expo-router";
 import {useFonts} from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import {useEffect} from "react";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 export {ErrorBoundary} from 'expo-router';
 
@@ -13,6 +14,8 @@ const Layout = () => {
         AnekGujaratiMedium: require('../assets/fonts/AnekGujarati-Medium.ttf'),
         AnekGujaratiRegular: require('../assets/fonts/AnekGujarati-Regular.ttf'),
     });
+
+    const insets = useSafeAreaInsets();
 
     useEffect(() => {
         if (error) throw error;
@@ -29,7 +32,12 @@ const Layout = () => {
     }
 
     return (
-        <Stack screenOptions={{headerShown: false}}>
+        <Stack screenOptions={{
+            headerShown: false,
+            headerStyle: {
+                height: 68 + insets.top
+            },
+        }}>
         </Stack>
     );
 }

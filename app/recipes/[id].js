@@ -1,10 +1,10 @@
 import {ActivityIndicator, Image, SafeAreaView, ScrollView, Text, View} from "react-native";
-import {COLORS, images} from "../../../constants";
+import {COLORS, images} from "../../constants";
 import {router, Stack, useLocalSearchParams} from "expo-router";
-import {HeaderIconButton, HeaderImgButton, ImageWithGradient, RecipeInfo, RecipeSteps} from "../../../components";
-import useFetch from "../../../hooks/useFetch";
+import {HeaderIconButton, HeaderImgButton, ImageWithGradient, RecipeInfo, RecipeSteps} from "../../components";
+import useFetch from "../../hooks/useFetch";
 import {useState} from "react";
-import useAuth from "../../../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 const RecipeDetailsScreen = () => {
     const {user} = useAuth();
@@ -23,6 +23,7 @@ const RecipeDetailsScreen = () => {
         <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
             <Stack.Screen
                 options={{
+                    headerShown: true,
                     headerStyle: {backgroundColor: COLORS.white},
                     headerShadowVisible: false,
                     headerBackVisible: false,
@@ -37,9 +38,9 @@ const RecipeDetailsScreen = () => {
                         />
                     ),
                     headerRight: () => (
-                        <HeaderImgButton imgURL={user.fotoPerfilURL}/>
+                        <HeaderImgButton imgURL={user.fotoPerfilURL} />
                     ),
-                    headerTitleAlign: "center"
+                    headerTitleAlign: "center",
                 }}
             />
 

@@ -1,9 +1,9 @@
 import {Image, TouchableOpacity} from "react-native";
 import styles from "./headerImgButton.style";
 
-const HeaderImgButton = ({imgURL, onPress}) => {
+const HeaderImgButton = ({imgURL, onPress, margin}) => {
     return (
-        <TouchableOpacity onPress={onPress} style={styles.btnContainer}>
+        <TouchableOpacity onPress={onPress} style={[styles.btnContainer, {marginHorizontal:  margin ? 15 : 0}]}>
             <Image
                 source={{uri: imgURL}}
                 resizeMode={"cover"}

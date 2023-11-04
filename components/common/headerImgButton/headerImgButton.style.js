@@ -3,7 +3,6 @@ import {SIZES} from "../../../constants";
 
 const styles = StyleSheet.create({
     btnContainer: {
-        marginHorizontal: 15,
         width: 40,
         height: 40,
         borderRadius: SIZES.small / 1.25,

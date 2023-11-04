@@ -1,8 +1,9 @@
 import {useEffect, useState} from "react";
 import {URL} from "../constants";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const useFetch = (endpoint, token) => {
+const useFetch = (endpoint, useToken) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -15,14 +16,14 @@ const useFetch = (endpoint, token) => {
         }
     };
 
-    if (token) {
-        options.headers["x-access-token"] = token;
-    }
 
     const fetchData = async () => {
         setLoading(true);
 
         try {
+            if (useToken) {
+                options.headers["x-access-token"] = await AsyncStorage.getItem('token');
+            }
             const response = await axios.request(options);
             setData(response.data);
             setLoading(false);
