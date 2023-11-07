@@ -38,7 +38,8 @@ const RecipeDetailsScreen = () => {
                         />
                     ),
                     headerRight: () => (
-                        <HeaderImgButton imgURL={user.fotoPerfilURL} />
+                        <HeaderImgButton imgURL={user.fotoPerfilURL} onPress={() =>
+                            router.push("/profile/perfil")}/>
                     ),
                     headerTitleAlign: "center",
                 }}
@@ -71,7 +72,7 @@ const RecipeDetailsScreen = () => {
                                     tiempo={data.tiempo}
                                     cantidadPorciones={data.cantidadPorciones}
                                     descripcion={data.descripcion}
-                                    ingredientes={data.ingredientes}
+                                    ingredientes={data.ingredientes?.map(i => `${i.cantidad}${i.unidad} ${i.ingrediente.nombre}`)}
                                     onComenzarPress={() => setComenzado(true)}
                                 />
                             )

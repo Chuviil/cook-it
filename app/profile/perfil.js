@@ -1,6 +1,6 @@
-import {Image, SafeAreaView, ScrollView, View} from "react-native";
+import {Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View} from "react-native";
 import {router, Stack} from "expo-router";
-import {COLORS, images} from "../../constants";
+import {COLORS, FONT, images} from "../../constants";
 import {HeaderIconButton, RecipesScroll, UserInfo} from "../../components";
 
 const Perfil = () => {
@@ -34,6 +34,21 @@ const Perfil = () => {
                         <RecipesScroll endpoint={"user/postedRecipes"} title={"Recetas Publicadas"}/>
                         <RecipesScroll endpoint={"user/savedRecipes"} title={"Recetas Guardadas"}/>
                     </View>
+                    <TouchableOpacity
+                        style={{
+                            alignSelf: "center",
+                            width: 194,
+                            height: 37,
+                            borderRadius: 10,
+                            backgroundColor: COLORS.red3,
+                            justifyContent: "center",
+                            alignItems: "center",
+                            marginVertical: 20
+                        }}
+                        onPress={() => router.push("/recipes/create")}
+                    >
+                        <Text style={{color: 'white', fontSize: 16, fontFamily: FONT.bold}}>Publicar nueva receta</Text>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         </SafeAreaView>
