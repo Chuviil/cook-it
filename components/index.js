@@ -12,6 +12,7 @@ import RecipeSteps from "./recipes/recipeSteps/RecipeSteps";
 import UserInfo from "./perfil/userInfo/UserInfo";
 import RecipesScroll from "./perfil/recipesScroll/RecipesScroll";
 import RecipeImagePicker from "./recipes/recipeImagePicker/RecipeImagePicker";
+import RecipeFormInfo from "./recipes/recipeFormInfo/RecipeFormInfo";
 
 export {
     Intro,
@@ -27,5 +28,6 @@ export {
     RecipeSteps,
     UserInfo,
     RecipesScroll,
-    RecipeImagePicker
+    RecipeImagePicker,
+    RecipeFormInfo
 }
