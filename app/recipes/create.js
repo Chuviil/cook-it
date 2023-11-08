@@ -1,7 +1,7 @@
 import {Image, SafeAreaView, ScrollView, Text, View} from "react-native";
 import {COLORS, images} from "../../constants";
 import {router, Stack} from "expo-router";
-import {HeaderIconButton, HeaderImgButton} from "../../components";
+import {HeaderIconButton, HeaderImgButton, RecipeImagePicker} from "../../components";
 import useAuth from "../../hooks/useAuth";
 
 const Create = () => {
@@ -36,7 +36,7 @@ const Create = () => {
             <>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View>
-                        <Text>CREATE</Text>
+                        <RecipeImagePicker/>
                     </View>
                 </ScrollView>
             </>
