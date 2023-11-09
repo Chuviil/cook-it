@@ -1,7 +1,13 @@
-import {Image, SafeAreaView, ScrollView, View} from "react-native";
+import {Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View} from "react-native";
 import {COLORS, images, URL} from "../../constants";
 import {router, Stack} from "expo-router";
-import {HeaderIconButton, HeaderImgButton, RecipeFormInfo, RecipeImagePicker} from "../../components";
+import {
+    HeaderIconButton,
+    HeaderImgButton,
+    RecipeFormInfo,
+    RecipeImagePicker,
+    RecipesIngredientsContainer
+} from "../../components";
 import useAuth from "../../hooks/useAuth";
 import {useState} from "react";
 import axios from "axios";
@@ -11,17 +17,27 @@ const Create = () => {
     const {user} = useAuth();
     const [imageData, setImageData] = useState("");
     const [cantidad, setCantidad] = useState(1);
+    const [tiempo, setTiempo] = useState(1);
+    const [nombre, setNombre] = useState("");
+    const [descripcion, setDescripcion] = useState("");
+    const [ingredientes, setIngredientes] = useState([]);
+    const [pasos, setPasos] = useState(["Paso one", "Paso two"]);
 
     const handleCreateRecipe = async () => {
         const options = {
             method: 'POST',
-            url: `${URL}/api/recipes/image`,
+            url: `${URL}/api/recipes`,
             headers: {
                 'Content-Type': 'application/json',
                 'x-access-token': await AsyncStorage.getItem('token')
             },
             data: {
+                nombre,
                 cantidadPorciones: cantidad,
+                tiempo,
+                descripcion,
+                ingredientes,
+                pasos,
                 imageData,
             }
         };
@@ -64,7 +80,18 @@ const Create = () => {
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View>
                         <RecipeImagePicker setImageData={setImageData}/>
-                        <RecipeFormInfo cantidad={cantidad} setCantidad={setCantidad}/>
+                        <RecipeFormInfo
+                            setNombre={setNombre}
+                            cantidad={cantidad} setCantidad={setCantidad}
+                            tiempo={tiempo} setTiempo={setTiempo}
+                            setDescripcion={setDescripcion}
+                        />
+                        <RecipesIngredientsContainer
+                            setIngredientes={setIngredientes} ingredientes={ingredientes}
+                        />
+                        <TouchableOpacity onPress={handleCreateRecipe}>
+                            <Text>Publicar</Text>
+                        </TouchableOpacity>
                     </View>
                 </ScrollView>
             </>

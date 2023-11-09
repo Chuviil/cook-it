@@ -29,7 +29,7 @@ const useFetch = (endpoint, useToken) => {
             setLoading(false);
         } catch (e) {
             setError(e);
-            alert("Error encountered while fetching");
+            alert(`Error encountered while fetching \n${e.message}`);
         } finally {
             setLoading(false);
         }

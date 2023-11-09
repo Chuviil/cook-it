@@ -7,14 +7,31 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: COLORS.blue2
     },
-    inputContainer: {
-        width: '100%',
-        height: 45,
+    modal: {
+        width: 330,
+        height: '90%',
+        backgroundColor: COLORS.white,
+        elevation: 2,
+        borderRadius: 5,
+    },
+    ingredientItem: {
+        width: 130,
+        height: 130,
         backgroundColor: COLORS.white,
         borderRadius: 15,
         elevation: 5,
-        padding: 5,
-        marginBottom: 27
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 10
+    },
+    ingredientText: {
+        fontFamily: FONT.regular,
+        fontSize: 16,
+    },
+    ingredientImg: {
+        width: 80,
+        height: 80,
+        borderRadius: 100,
     },
     btnContador: {
         width: 25,
@@ -29,7 +46,7 @@ const styles = StyleSheet.create({
         fontFamily: FONT.bold,
         fontSize: 18
     },
-    descripcionContainer: {
+    recipesContainer: {
         width: '100%',
         minHeight: 95,
         height: 'auto',
@@ -37,7 +54,6 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         elevation: 5,
         padding: 5,
-        textAlignVertical: "top",
         marginBottom: 27
     }
 });
