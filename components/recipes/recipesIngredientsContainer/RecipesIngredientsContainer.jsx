@@ -9,10 +9,15 @@ const RecipesIngredientsContainer = ({setIngredientes, ingredientes}) => {
     const [modalVisible, setModalVisible] = useState(false);
 
     const agregarIngrediente = (ingrediente) => {
+        if (ingredientes.some(i => i.ingrediente === ingrediente._id)) {
+            alert("El ingrediente ya se encuentra agregado");
+            return;
+        }
         const ingredientesT = ingredientes;
         ingredientesT.push({ingrediente: ingrediente?._id, cantidad: 1, unidad: "", nombre: ingrediente.nombre});
         setIngredientes(ingredientesT);
         setModalVisible(false);
+        console.log(JSON.stringify(ingredientes));
     }
 
     return (
@@ -26,7 +31,7 @@ const RecipesIngredientsContainer = ({setIngredientes, ingredientes}) => {
 
             <View style={styles.recipesContainer}>
                 {ingredientes?.map((ingrediente) => (
-                    <View style={{flexDirection: 'row'}}>
+                    <View style={{flexDirection: 'row'}} key={ingrediente.ingrediente}>
                         <Text>{ingrediente.nombre}</Text>
                         <Text>{ingrediente.cantidad}</Text>
                     </View>
@@ -62,6 +67,12 @@ const RecipesIngredientsContainer = ({setIngredientes, ingredientes}) => {
                                 numColumns={2}
                                 showsHorizontalScrollIndicator={false}
                                 showsVerticalScrollIndicator={false}
+                                initialNumToRender={6}
+                                getItemLayout={(data, index) => ({
+                                    length: styles.ingredientItem.height,
+                                    offset: styles.ingredientItem.height * index,
+                                    index
+                                })}
                             />
                         </View>
                     </View>
