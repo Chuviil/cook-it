@@ -1,16 +1,19 @@
-import {ActivityIndicator, Image, SafeAreaView, ScrollView, View} from "react-native";
+import {ActivityIndicator, Image, RefreshControl, SafeAreaView, ScrollView, View} from "react-native";
 import {COLORS, images, SIZES} from "../../constants";
 import {StatusBar} from "expo-status-bar";
 import {HeaderIconButton, HeaderImgButton, Search, Tendencia} from "../../components";
 import useAuth from "../../hooks/useAuth";
 import {Drawer} from "expo-router/drawer";
 import {router, useNavigation} from "expo-router";
-import {useState} from "react";
+import {useCallback, useState} from "react";
+import useFetch from "../../hooks/useFetch";
 
 export default function Index() {
     const {user} = useAuth();
     const navigation = useNavigation();
     const [search, setSearch] = useState("");
+    const [refresing, setRefreshing] = useState(false);
+    const {data, loading, error, refetch} = useFetch("recipes");
 
     if (!user) {
         return (
@@ -19,6 +22,12 @@ export default function Index() {
             </View>
         )
     }
+
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        refetch();
+        setRefreshing(false);
+    }, [])
 
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
@@ -43,14 +52,14 @@ export default function Index() {
             }
             />
             <StatusBar style={"dark"}/>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false} refreshControl={<RefreshControl refreshing={refresing} onRefresh={onRefresh}/>}>
                 <View
                     style={{flex: 1, padding: SIZES.medium}}
                 >
                     <Search search={search} setSearch={setSearch} onSearchPress={() => {
                         console.log("Searching: ", search)
                     }}/>
-                    <Tendencia/>
+                    <Tendencia data={data} error={error} loading={loading}/>
                 </View>
             </ScrollView>
         </SafeAreaView>

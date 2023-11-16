@@ -4,9 +4,7 @@ import useFetch from "../../../hooks/useFetch";
 import Card from "../../common/horizontalCard/Card";
 import {router} from "expo-router";
 
-const Tendencia = () => {
-    const {data, loading, error} = useFetch("recipes");
-
+const Tendencia = ({data, loading, error}) => {
     return (
         <View style={{marginTop: 20}}>
             <View style={styles.container}>
