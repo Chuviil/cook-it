@@ -1,12 +1,13 @@
-import {Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View} from "react-native";
-import {COLORS, images, URL} from "../../constants";
+import {ActivityIndicator, Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View} from "react-native";
+import {COLORS, FONT, images, URL} from "../../constants";
 import {router, Stack} from "expo-router";
 import {
     HeaderIconButton,
     HeaderImgButton,
     RecipeFormInfo,
     RecipeImagePicker,
-    RecipesIngredientsContainer
+    RecipesIngredientsContainer,
+    RecipesStepsForm
 } from "../../components";
 import useAuth from "../../hooks/useAuth";
 import {useState} from "react";
@@ -21,9 +22,12 @@ const Create = () => {
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [ingredientes, setIngredientes] = useState([]);
-    const [pasos, setPasos] = useState(["Paso one", "Paso two"]);
+    const [pasos, setPasos] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const handleCreateRecipe = async () => {
+        setLoading(true);
+
         const options = {
             method: 'POST',
             url: `${URL}/api/recipes`,
@@ -42,11 +46,10 @@ const Create = () => {
             }
         };
 
-        axios.request(options).then(res => {
-
-        }).catch(e => {
+        axios.request(options).then(() => router.back()).catch(e => {
             console.log(e)
-        })
+            alert("Hubo un error al cargar la receta");
+        }).finally(() => setLoading(false))
     }
 
 
@@ -79,19 +82,46 @@ const Create = () => {
             <>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View>
-                        <RecipeImagePicker setImageData={setImageData}/>
-                        <RecipeFormInfo
-                            setNombre={setNombre}
-                            cantidad={cantidad} setCantidad={setCantidad}
-                            tiempo={tiempo} setTiempo={setTiempo}
-                            setDescripcion={setDescripcion}
-                        />
-                        <RecipesIngredientsContainer
-                            setIngredientes={setIngredientes} ingredientes={ingredientes}
-                        />
-                        <TouchableOpacity onPress={handleCreateRecipe}>
-                            <Text>Publicar</Text>
-                        </TouchableOpacity>
+                        {loading ? (
+                            <ActivityIndicator size={"large"}/>
+                        ) : (
+                            <>
+                                <RecipeImagePicker setImageData={setImageData}/>
+                                <RecipeFormInfo
+                                    setNombre={setNombre}
+                                    cantidad={cantidad} setCantidad={setCantidad}
+                                    tiempo={tiempo} setTiempo={setTiempo}
+                                    setDescripcion={setDescripcion}
+                                />
+                                <RecipesIngredientsContainer
+                                    setIngredientes={setIngredientes} ingredientes={ingredientes}
+                                />
+                                <RecipesStepsForm
+                                    setPasos={setPasos} pasos={pasos}
+                                />
+                                <TouchableOpacity
+                                    style={{
+                                        width: 126,
+                                        height: 37,
+                                        borderRadius: 10,
+                                        backgroundColor: COLORS.red3,
+                                        justifyContent: 'center',
+                                        marginBottom: 20,
+                                        alignSelf: 'center'
+                                    }}
+                                    onPress={handleCreateRecipe}
+                                >
+                                    <Text
+                                        style={{
+                                            fontFamily: FONT.bold,
+                                            fontSize: 16,
+                                            color: COLORS.white,
+                                            textAlign: 'center',
+                                        }}
+                                    >Publicar</Text>
+                                </TouchableOpacity>
+                            </>
+                        )}
                     </View>
                 </ScrollView>
             </>

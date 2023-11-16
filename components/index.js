@@ -14,6 +14,7 @@ import RecipesScroll from "./perfil/recipesScroll/RecipesScroll";
 import RecipeImagePicker from "./recipes/recipeImagePicker/RecipeImagePicker";
 import RecipeFormInfo from "./recipes/recipeFormInfo/RecipeFormInfo";
 import RecipesIngredientsContainer from "./recipes/recipesIngredientsContainer/RecipesIngredientsContainer";
+import RecipesStepsForm from "./recipes/recipesStepsForm/RecipesStepsForm";
 
 export {
     Intro,
@@ -31,5 +32,6 @@ export {
     RecipesScroll,
     RecipeImagePicker,
     RecipeFormInfo,
-    RecipesIngredientsContainer
+    RecipesIngredientsContainer,
+    RecipesStepsForm
 }
