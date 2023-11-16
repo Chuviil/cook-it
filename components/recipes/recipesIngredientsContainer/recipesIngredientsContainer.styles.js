@@ -14,6 +14,13 @@ const styles = StyleSheet.create({
         elevation: 2,
         borderRadius: 5,
     },
+    unitsModal: {
+        width: 330,
+        height: '20%',
+        backgroundColor: COLORS.white,
+        elevation: 2,
+        borderRadius: 5,
+    },
     ingredientItem: {
         width: 130,
         height: 130,
@@ -47,7 +54,7 @@ const styles = StyleSheet.create({
         fontSize: 18
     },
     recipesContainer: {
-        width: '100%',
+        flex: 1,
         minHeight: 95,
         height: 'auto',
         backgroundColor: COLORS.white,

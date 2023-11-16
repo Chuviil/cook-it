@@ -43,7 +43,7 @@ const Create = () => {
         };
 
         axios.request(options).then(res => {
-            console.log(res.data)
+
         }).catch(e => {
             console.log(e)
         })
