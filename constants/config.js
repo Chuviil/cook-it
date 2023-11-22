@@ -1,2 +1,2 @@
-// export const URL = 'https://cook-it-backend.onrender.com';
-export const URL = 'http://192.168.120.7:3000'
+// https://github.com/Chuviil/cook-it-bckn
+export const URL = 'BACKEND URL'

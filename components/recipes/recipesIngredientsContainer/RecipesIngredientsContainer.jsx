@@ -19,7 +19,7 @@ const RecipesIngredientsContainer = ({setIngredientes, ingredientes}) => {
             return;
         }
         const ingredientesT = ingredientes;
-        ingredientesT.push({ingrediente: ingrediente?._id, cantidad: 1, unidad: "mm", nombre: ingrediente.nombre});
+        ingredientesT.push({ingrediente: ingrediente?._id, cantidad: 1, unidad: "-", nombre: ingrediente.nombre});
         setIngredientes(ingredientesT);
         setIngredientsModalVisible(false);
     }
